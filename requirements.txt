@@ -1,0 +1,9 @@
+jinja2
+pillow
+setuptools
+wheel
+build
+twine
+pytest
+pytest-cov
+coverage
