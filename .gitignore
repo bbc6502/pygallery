@@ -1,0 +1,7 @@
+.idea
+gallery
+photos
+dist
+.venv
+*.egg-info
+*.pyc
