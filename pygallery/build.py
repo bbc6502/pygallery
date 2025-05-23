@@ -1,4 +1,5 @@
 import hashlib
+import json
 import math
 import os
 from PIL import Image, ExifTags
@@ -43,9 +44,20 @@ def convert_exif(k, v):
     return v
 
 
-def build_dir(env, args, root, dirs, files):
-    gallery_name = os.path.basename(root)
+def generate_words(output_name, words):
+    chunks = [int(output_name[x:x+7],16) for x in range(0, len(output_name), 7)]
+    result = [words[chunk % len(words)] for chunk in chunks]
+    return '-'.join(result).lower()
+
+
+def generate_output_name(gallery_name, words):
     output_name = hashlib.md5(gallery_name.encode('utf-8')).hexdigest()
+    return generate_words(output_name, words)
+
+
+def build_dir(env, args, root, dirs, files, words):
+    gallery_name = os.path.basename(root)
+    output_name = generate_output_name(gallery_name, words)
 
     album = {
         'name': gallery_name,
@@ -161,6 +173,10 @@ def build(args):
     template_dir = os.path.join(base_dir, 'templates')
     print('Templates at', template_dir)
 
+    with open(os.path.join(os.path.dirname(__file__), 'stars.json'), 'r') as f:
+        words = json.load(f)
+        print(len(words), 'stars')
+
     env = Environment(loader=FileSystemLoader(template_dir), autoescape=select_autoescape())
 
     template = env.get_template('theme.css')
@@ -174,4 +190,4 @@ def build(args):
         template.stream().dump(f)
 
     for root, dirs, files in os.walk(args.path):
-        build_dir(env, args, root, dirs, files)
+        build_dir(env, args, root, dirs, files, words)

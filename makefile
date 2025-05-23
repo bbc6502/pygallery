@@ -31,7 +31,7 @@ help:
 
 merge:
 	git checkout main
-	git merge 0.0.4
+	git merge 0.0.5
 
 tag:
-	git tag -a 0.0.4 -m 'Add robots.txt'
+	git tag -a 0.0.5 -m 'Add robots.txt'
