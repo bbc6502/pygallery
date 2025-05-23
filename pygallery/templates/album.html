@@ -1,45 +1,31 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ title }}</title>
         <link rel="stylesheet" type="text/css" href="../theme.css">
     </head>
     <body class="album">
-
-        <div class="header">
-        <h1 class="title">{{ title }}</h1>
-        </div>
-
-        <div class="content">
-            <table class="albums">
-            {%- for entry in albums %}
-                <tr>
-                    <td>
-                        <a href="../{{ entry['code'] }}">
-                            <h2 class="title">{{ entry['name'] }}</h2>
-                        </a>
-                    </td>
-                    <td>
-                        <div class="thumbnail">
-                        <a href="../{{ entry['code'] }}">
-                            <img src="../{{ entry['code'] }}/{{ entry['first']['code'] }}.thumb.jpg">
-                        </a>
-                        </div>
-                    </td>
-                </tr>
-            {%- endfor %}
-            </table>
-
-            <div class="thumbnails">
-            {%- for entry in photos %}
-            <div class="thumbnail">
-            <a href="{{ entry['code'] }}.html">
-                <img src="{{ entry['code'] }}.thumb.jpg" alt="{{ entry['name'] }}">
+        <header class="top">
+            <nav>{{ title }}</nav>
+        </header>
+        <footer class="bottom">
+        </footer>
+        {%- for entry in albums %}
+        <section class="thumbnail">
+            <a href="../{{ entry['code'] }}" title="{{ entry['name'] }}">
+                <img src="../{{ entry['code'] }}/{{ entry['first']['code'] }}.thumb.jpg" alt="{{ entry['name'] }}">
             </a>
-            </div>
-            {%- endfor %}
-            </div>
-
-        </div>
+            <br/><p>{{ entry['name'] }}</p>
+        </section>
+        {%- endfor %}
+        {%- for entry in photos %}
+        <section class="thumbnail">
+            <a href="{{ entry['code'] }}.html">
+            <img src="{{ entry['code'] }}.thumb.jpg" alt="{{ entry['name'] }}">
+            </a>
+        </section>
+        {%- endfor %}
     </body>
 </html>

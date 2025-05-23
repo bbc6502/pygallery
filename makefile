@@ -31,7 +31,7 @@ help:
 
 merge:
 	git checkout main
-	git merge 0.0.1
+	git merge 0.0.2
 
 tag:
-	git tag -a 0.0.1 -m 'Initial commit'
+	git tag -a 0.0.2 -m 'Initial commit'
