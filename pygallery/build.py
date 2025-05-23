@@ -72,7 +72,7 @@ def build_dir(env, args, root, dirs, files, words):
     albums = [
         {
             'name': name,
-            'code': hashlib.md5(name.encode('utf-8')).hexdigest(),
+            'code': generate_output_name(name, words),
             'path': os.path.join(root, name),
             'first': first(os.path.join(root, name)),
         }
