@@ -160,10 +160,18 @@ def build(args):
     base_dir = os.path.dirname(__file__)
     template_dir = os.path.join(base_dir, 'templates')
     print('Templates at', template_dir)
+
     env = Environment(loader=FileSystemLoader(template_dir), autoescape=select_autoescape())
+
     template = env.get_template('theme.css')
     theme_path = os.path.join(args.output, 'theme.css')
     with open(theme_path, 'w') as f:
         template.stream().dump(f)
+
+    template = env.get_template('robots.txt')
+    robots_path = os.path.join(args.output, 'robots.txt')
+    with open(robots_path, 'w') as f:
+        template.stream().dump(f)
+
     for root, dirs, files in os.walk(args.path):
         build_dir(env, args, root, dirs, files)

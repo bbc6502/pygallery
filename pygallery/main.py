@@ -10,7 +10,7 @@ commands = {
 
 
 def main():
-    parser = ArgumentParser(prog='pygallery', description='Python Static Photo Gallery Generator v0.0.3')
+    parser = ArgumentParser(prog='pygallery', description='Python Static Photo Gallery Generator v0.0.4')
     parser.add_argument("-p", "--path", required=True, type=str, help="Path to the images")
     parser.add_argument('-o', '--output', required=True, type=str, help="Output path to save static galleries")
     parser.add_argument('-t', '--title', type=str, help="Title of the gallery", default="Gallery")
