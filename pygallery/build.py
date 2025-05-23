@@ -33,6 +33,13 @@ def convert_exif(k, v):
     if k == 'ApertureValue':
         v = round(math.sqrt(math.pow(2, float(v))), 1)
         return f'f/{v}'
+    if isinstance(v, str):
+        return v[0:100]
+    if isinstance(v, int):
+        return str(v)
+    if isinstance(v, bytes):
+        return v.decode('utf-8')[0:100]
+    print(k, type(v))
     return v
 
 

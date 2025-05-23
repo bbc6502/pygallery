@@ -24,14 +24,14 @@ test-gallery-build:
 	.venv/bin/python -m pygallery build -p photos -o gallery
 
 test-gallery-serve:
-	.venv/bin/python -m pygallery serve -p photos -o gallery
+	.venv/bin/python -m pygallery serve -p photos -o gallery -P 1080
 
 help:
 	.venv/bin/python -m pygallery -h
 
 merge:
 	git checkout main
-	git merge 0.0.2
+	git merge 0.0.3
 
 tag:
-	git tag -a 0.0.2 -m 'Initial commit'
+	git tag -a 0.0.3 -m 'Initial commit'
