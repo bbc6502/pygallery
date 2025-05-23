@@ -14,6 +14,9 @@ build: requirements
 	rm -fr dist build
 	.venv/bin/python -m build
 
+review: build
+	tar -zvtf dist/pygallery*.gz
+
 test-deploy: build
 	.venv/bin/python -m twine upload --repository testpypi dist/*
 
@@ -31,7 +34,7 @@ help:
 
 merge:
 	git checkout main
-	git merge 0.0.5
+	git merge 0.0.6
 
 tag:
-	git tag -a 0.0.5 -m 'Add robots.txt'
+	git tag -a 0.0.6 -m 'Add stars.json'
