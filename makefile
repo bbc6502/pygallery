@@ -34,7 +34,7 @@ help:
 
 merge:
 	git checkout main
-	git merge 0.0.7
+	git merge 0.0.8
 
 tag:
-	git tag -a 0.0.7 -m 'Add stars.json'
+	git tag -a 0.0.8 -m 'Add stars.json'

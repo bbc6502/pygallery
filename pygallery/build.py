@@ -30,10 +30,16 @@ def first(path):
 
 def convert_exif(k, v):
     if k == 'ShutterSpeedValue':
-        return int(math.pow(2, float(v)))
+        try:
+            return int(math.pow(2, float(v)))
+        except OverflowError:
+            return str(v)
     if k == 'ApertureValue':
-        v = round(math.sqrt(math.pow(2, float(v))), 1)
-        return f'f/{v}'
+        try:
+            v = round(math.sqrt(math.pow(2, float(v))), 1)
+            return f'f/{v}'
+        except OverflowError:
+            return str(v)
     if isinstance(v, str):
         return v[0:100]
     if isinstance(v, int):
